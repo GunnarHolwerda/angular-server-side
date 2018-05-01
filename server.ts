@@ -43,9 +43,9 @@ app.engine('html', (_, options, callback) => {
 app.set('view engine', 'html');
 app.set('views', DIST_FOLDER);
 
-app.get('/api/course/:courseId/detail', (req, res) => {
-  const courseId = req.params['courseId'];
-  res.json({ title: `course ${courseId}` });
+app.get('/api/resource/:id/title', (req, res) => {
+  const resourceId = req.params['id'];
+  res.json({ title: `resource ${resourceId}` });
 });
 
 // Server static files from dist folder

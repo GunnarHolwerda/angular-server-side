@@ -8,16 +8,16 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
 @Injectable()
-export class CourseDataService {
+export class DataService {
   constructor(private state: TransferState, private http: HttpClient) { }
 
-  getCourseTitle(courseId: string): Observable<string> {
-    const COURSE_TITLE = makeStateKey(`courseTitle_${courseId}`);
-    let courseTitle = this.state.get(COURSE_TITLE, '');
-    if (courseTitle !== '') {
-      return observableOf(courseTitle);
+  getResourceTitle(resourceId: string): Observable<string> {
+    const RESOURCE_TITLE = makeStateKey(`resourceTitle_${resourceId}`);
+    let resourceTitle = this.state.get(RESOURCE_TITLE, '');
+    if (resourceTitle !== '') {
+      return observableOf(resourceTitle);
     } else {
-      return this.http.get<{title: string}>(`http://localhost:4201/api/course/${courseId}/detail`).pipe(
+      return this.http.get<{title: string}>(`http://localhost:4201/api/resource/${resourceId}/title`).pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
             console.error('An error occured: ', error.error.message);
@@ -27,9 +27,9 @@ export class CourseDataService {
           return new ErrorObservable(`Something bad happend: please try again later`);
         }),
         map((response) => {
-          courseTitle = response.title;
-          this.state.set(COURSE_TITLE, courseTitle);
-          return courseTitle;
+          resourceTitle = response.title;
+          this.state.set(RESOURCE_TITLE, resourceTitle);
+          return resourceTitle;
         }
       ));
     }

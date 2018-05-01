@@ -3,14 +3,14 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { CourseDataService } from './course-data.service';
+import { DataService } from './data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { CardComponent } from './card/card.component';
 
 export const appRoutes: Routes = [
   { path: '', component: AppComponent, children: [
-    { path: ':courseId', component: CardComponent }
+    { path: ':id', component: CardComponent }
   ]}
 ];
 
@@ -25,7 +25,7 @@ export const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [CourseDataService],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseDataService } from '../course-data.service';
+import { DataService } from '../data.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -11,12 +11,12 @@ export class CardComponent implements OnInit {
   title = 'app';
   error = null;
 
-  constructor(private courseData: CourseDataService, private route: ActivatedRoute) {
+  constructor(private dataService: DataService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    const courseId = this.route.snapshot.params['courseId'];
-    this.courseData.getCourseTitle(courseId).subscribe(
+    const resourceId = this.route.snapshot.params['id'];
+    this.dataService.getResourceTitle(resourceId).subscribe(
       title => this.title = title,
       error => this.error = error
     );

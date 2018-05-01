@@ -43,6 +43,11 @@ app.engine('html', (_, options, callback) => {
 app.set('view engine', 'html');
 app.set('views', DIST_FOLDER);
 
+app.get('/api/course/:courseId/detail', (req, res) => {
+  const courseId = req.params['courseId'];
+  res.json({ title: `course ${courseId}` });
+});
+
 // Server static files from dist folder
 app.get('*.*', express.static(DIST_FOLDER));
 

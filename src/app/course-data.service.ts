@@ -17,7 +17,7 @@ export class CourseDataService {
     if (courseTitle !== '') {
       return observableOf(courseTitle);
     } else {
-      return this.http.get<{title: string}>(`http://localhost:4202/course/${courseId}/detail`).pipe(
+      return this.http.get<{title: string}>(`http://localhost:4201/api/course/${courseId}/detail`).pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
             console.error('An error occured: ', error.error.message);

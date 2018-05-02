@@ -1,1 +1,15 @@
-<h1>{{title}}</h1>
+<div [ngClass]="{'pt-0': false}">
+  <a [title]="title">
+    <div [ngClass]="{'resource-item-stack': true, 'large': true}"></div>
+    <div [ngClass]="{'resource-item': true, 'large': true}">
+<div class="resource-image" [ngStyle]="{'background-image': 'url(' + 'https://i.amz.mshcdn.com/LPwgkIVq_7LtmKHSeVA6HnNamAY=/https%3A%2F%2Fblueprint-api-production.s3.amazonaws.com%2Fuploads%2Fcard%2Fimage%2F529658%2F7f362102-932f-4a8c-bc5a-5b57a57fbc38.jpg' + ')' }">
+      </div>
+      <span class="card-sub-text">Here is the subtext</span>
+      <span class="resource-item-title">{{title}}</span>
+      <div class="item-divider"></div>
+      <span class="resource-item-type">
+        {{'course' | uppercase}}
+      </span>
+    </div>
+  </a>
+</div>

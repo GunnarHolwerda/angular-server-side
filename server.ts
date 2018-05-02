@@ -40,6 +40,12 @@ app.engine('html', (_, options, callback) => {
   });
 });
 
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
 app.set('view engine', 'html');
 app.set('views', DIST_FOLDER);
 
@@ -53,7 +59,9 @@ app.get('*.*', express.static(DIST_FOLDER));
 
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
-  res.render('index', { req });
+  res.render('index', { req }, (err, html) => {
+    res.send(html.match(/<app-card.*?>.*[\s\S]*<\/app-card>/)[0]);
+  });
 });
 
 // Start up the Node server

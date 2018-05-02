@@ -21,4 +21,8 @@ export class CardComponent implements OnInit {
       error => this.error = error
     );
   }
+
+  onClick(): void {
+    console.log(this.title);
+  }
 }
